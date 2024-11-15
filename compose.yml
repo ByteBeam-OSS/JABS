@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  backup-service:
+    image: your-dockerhub-user/backup-service:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - /path/to/live/maildir:/live/maildir:ro  # Example source directory
+    environment:
+      - DRIVE_CLIENT_ID=${DRIVE_CLIENT_ID}
+      - DRIVE_CLIENT_SECRET=${DRIVE_CLIENT_SECRET}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - REFRESH_TOKEN=${REFRESH_TOKEN}
+      - TOKEN_EXPIRY=${TOKEN_EXPIRY}
+      - SMTP_SERVER=${SMTP_SERVER}
+      - SMTP_PORT=${SMTP_PORT}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_TO=${EMAIL_TO}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+

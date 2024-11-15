@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Backup Configuration
+SOURCE_DIR="/live/maildir/"                            # Source directory
+TMP_DIR="/tmp/mailserver_backup"                      # Temporary directory
+BACKUP_ARCHIVE="/tmp/mailserver-backup-$(date +%F).tar.gz"  # Archive path
+LOG_FILE="/tmp/mail_backup.log"                       # Log file
+
+# Logging function
+log() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+}
+
+# Start backup
+log "Starting mailserver backup..."
+
+# Prepare temporary directory
+mkdir -p "$TMP_DIR"
+
+# Rsync files
+log "Syncing $SOURCE_DIR to $TMP_DIR..."
+if rsync -avz --delete "$SOURCE_DIR" "$TMP_DIR"; then
+    log "Rsync completed successfully."
+else
+    log "Rsync failed. Check the logs for details."
+    exit 1
+fi
+
+# Create tarball
+log "Creating tarball $BACKUP_ARCHIVE..."
+if tar -czf "$BACKUP_ARCHIVE" -C "$TMP_DIR" .; then
+    log "Tarball created successfully."
+else
+    log "Tarball creation failed."
+    exit 1
+fi
+
+# Upload to Google Drive
+log "Uploading backup to Google Drive..."
+if node /scripts/mail/upload-to-drive.js "$BACKUP_ARCHIVE"; then
+    log "Backup uploaded successfully."
+else
+    log "Backup upload failed."
+    exit 1
+fi
+
+# Cleanup
+log "Cleaning up temporary files..."
+rm -rf "$TMP_DIR" "$BACKUP_ARCHIVE"
+
+log "Mailserver backup completed successfully."
