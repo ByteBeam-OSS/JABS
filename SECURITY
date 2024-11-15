@@ -1,0 +1,36 @@
+SECURITY POLICY
+===============
+
+BYTEBEAM LIMITED takes the security and privacy of our users and contributors seriously.  
+If you discover a security vulnerability in Viki, please help us responsibly address  
+the issue by following these guidelines.
+
+REPORTING VULNERABILITIES
+-------------------------
+1. **Do NOT open a public issue** if you believe you have identified a security vulnerability.  
+   Publicly disclosing security issues could put our ecosystem and users at risk before a fix is deployed.
+
+2. **Send a private email** with a detailed report to connect@byte-beam.io.  
+   Your report should include:
+   
+      - A description of the issue
+      - Steps to reproduce the vulnerability
+      - Any potential impact you foresee
+
+3. **Please allow us time to respond**.  
+   We will work promptly to investigate the vulnerability, confirm the report,  
+   and develop any necessary patches or updates.
+
+4. **Credit for responsible disclosure** will be given where applicable and upon request,  
+   as a thank-you for helping protect the project and its users.
+
+OUR COMMITMENT
+--------------
+Upon receiving a vulnerability report, we will:
+
+- Acknowledge receipt of your report within a reasonable timeframe.
+- Provide updates on the progress of our investigation.
+- Notify you when the vulnerability has been resolved, along with any relevant public advisories.
+
+Thank you for helping us keep Viki and the BYTEBEAM community secure.
+

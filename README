@@ -1,0 +1,58 @@
+JABS - The BYTEBEAM Backup Service
+==================================
+
+Jabs is the BYTEBEAM Backup Service, designed to handle all 
+backup-related operations seamlessly.
+It provides a robust solution for backing up essential components and 
+data within your app using cron-based scripts.
+The service ensures that all backups are efficient, reliable, and easily 
+restorable.
+
+
+Features
+--------
+
+- Automated Backups: Scheduled via cron scripts for full automation.
+- Versatile Targets: Supports backing up databases, application files, 
+configurations, logs, and more.
+- Customizable Setup: Easily configure backup frequency, retention 
+policies, and storage locations.
+- Storage Agnostic: Compatible with local, remote (via SCP/RSYNC), and 
+cloud storage (e.g., MinIO).
+- Efficient Compression: Backups are compressed to save storage without 
+compromising data integrity.
+- Security: Encrypted backups ensure your data stays secure during 
+storage and transit.
+- Restore Options: Simplified restoration scripts for quick recovery.
+
+
+Contributing
+------------
+
+To contribute, please raise a pull request.
+Proper documentation and programming practices are a MUST!
+If in doubt, ASK!
+
+For inquiries, get in touch with us via:
+
+    connect@byte-beam.io
+
+
+IMPORTANT NOTE ON OPEN SOURCE LICENSE
+-------------------------------------
+
+This project is open source and made available under the GPLv2 (GNU 
+General Public License v2.0).
+You are free to view, modify, and distribute the source code of Jabs
+in accordance with the terms of the GPLv2.
+
+***HOWEVER***, this license applies strictly to the code.
+All BYTEBEAM content, branding, logos, and associated materials are 
+licensed under the
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International 
+License.
+
+    https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+These assets are the property of BYTEBEAM LIMITED and may only be used
+non-commercially, with attribution, and under the same license terms.

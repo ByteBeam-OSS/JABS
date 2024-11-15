@@ -1,0 +1,50 @@
+CONTRIBUTING TO VIKI
+====================
+
+Thank you for your interest in contributing to Viki!  
+Contributions are essential to keeping our ecosystem secure, efficient, and innovative.
+
+GENERAL GUIDELINES
+------------------
+1. **Submit an Issue First**:  
+   Before working on a major change or new feature, please open an issue in the repository.  
+   This allows us to discuss the idea and agree on the best approach before significant work begins.
+
+2. **Fork and Clone**:
+   - Fork the repository on GitHub.
+   - Clone your fork locally for development.
+
+3. **Code Style**:  
+   Follow established code conventions. Adhere to the project's formatting and naming standards.  
+   Consistency with indentation, spacing, and documentation style is key for readability.
+
+4. **Commit Messages**:  
+   Write clear, descriptive commit messages. Include the issue reference in the message if applicable.  
+   Format: "MODULE: Brief description of the change"
+
+5. **Testing**:  
+   All code contributions must be tested. Include relevant tests in the `/tests` directory,  
+   and ensure they pass before submission.
+
+6. **Documentation**:  
+   Update documentation to reflect any new features or modifications.  
+   This includes README, inline comments, and relevant markdown files.
+
+PULL REQUEST PROCESS
+--------------------
+1. Ensure your pull request (PR) is up-to-date with the `main` branch and resolves any merge conflicts.
+2. PRs should be focused and limited to a single feature, bugfix, or improvement.
+3. Link the PR to the relevant issue(s) and include a brief description of the changes.
+4. Submit the PR with the appropriate label (`bugfix`, `feature`, `documentation`, etc.).
+
+CODE OF CONDUCT
+---------------
+Contributors are expected to adhere to the Code of Conduct.  
+Be respectful, and aim to create a positive environment for collaboration.
+
+CONTACT
+-------
+For questions, join the discussion in the issue tracker or reach out at connect@byte-beam.io.
+
+Thank you for contributing to Viki and helping us build a reliable automation ecosystem.
+
