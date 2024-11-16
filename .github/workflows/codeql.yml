@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [javascript, shell]  # Correct language names for CodeQL
+        language: [javascript]  # Correct language names for CodeQL
 
     steps:
       # Checkout the code
