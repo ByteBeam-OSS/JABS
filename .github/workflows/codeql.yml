@@ -1,0 +1,42 @@
+name: "CodeQL Analysis"
+
+on:
+  push:  # Trigger on all pushes, including tags
+    tags:  # Run on tag pushes
+      - '*'
+    branches:  # Run on branch pushes
+      - '**'
+  pull_request:
+    branches:
+      - '**' # Run on all pull requests
+  schedule:
+    - cron: '0 0 * * *' # Run daily at midnight UTC
+
+jobs:
+  analyze:
+    name: Analyze Code with CodeQL
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript, shell]  # Correct language names for CodeQL
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Initialize the CodeQL tools
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      # Run the CodeQL analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
