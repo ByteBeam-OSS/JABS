@@ -1,0 +1,97 @@
+Changelog:
+
+Version < WORKING: Backup Service Enhancements> last updated: 16/11/24
+
+1. Transitioned from Rclone to Node.js for Google Drive Uploads:
+   - Removed `rclone` as it was deemed unnecessary due to the lack of direct
+     shell request support from Google Drive.
+   - Replaced `rclone` with a custom **Node.js helper script** to interact
+     with the Google Drive API directly.
+   - Implemented `scripts/mail/upload-to-drive.js` to handle Google Drive
+     file uploads using the Google Drive API and the `googleapis` Node.js
+     package.
+   - Added runtime environment variables for `ACCESS_TOKEN` and optional
+     `DRIVE_FOLDER_ID` for Google Drive configuration.
+   - Removed `rclone-template.conf` and all references to `rclone` from the
+     Dockerfile and project structure.
+
+2. Introduced Node.js to the Docker Image:
+   - Node.js is required to run the Google Drive helper script.
+   - Updated the Dockerfile to include Node.js installation using the
+     official NodeSource setup script.
+   - Installed Node.js version **18.x**, the current LTS version, to ensure
+     long-term support and access to modern features.
+
+3. Updated Project Structure for Better Organization:
+   - Improved separation of service-specific backup scripts from runtime
+     cron job configurations.
+   - Created a new `runtime/` directory to house `daily`, `weekly`, and
+     `monthly` subdirectories containing cron job symlinks.
+   - Moved all service-specific scripts to the `scripts/` directory for
+     clarity.
+   - Updated the Dockerfile to point cron job symlinks (`/etc/cron.daily`,
+     `/etc/cron.weekly`, `/etc/cron.monthly`) to the new `runtime/`
+     directory.
+
+4. Enhanced Mailserver Backup Script:
+   - Integrated the new Node.js Google Drive helper script into the existing
+     mailserver backup script for seamless functionality.
+   - Replaced the `rclone` upload step with a call to the `upload-to-drive.js`
+     Node.js script in `scripts/mail/mailserver-backup`.
+   - Added comprehensive logging to both the backup and upload steps to
+     ensure better troubleshooting and transparency.
+
+5. Docker Swarm Compatibility:
+   - Ensured the service is fully compatible with Docker Swarm for scalable,
+     production-grade deployments.
+   - Maintained a `docker-stack.yml` file to define the Swarm stack
+     configuration.
+   - All sensitive data (e.g., Google Drive access token, SMTP credentials)
+     is injected as runtime environment variables via `.env` or Swarm
+     secrets.
+   - Updated the `.env` file to reflect the new environment variables for
+     the Node.js Google Drive integration.
+
+6. Streamlined Dependency Management:
+   - Eliminated unnecessary tools to reduce image size and complexity.
+   - Removed `rclone` installation from the Dockerfile.
+   - Cleaned up project structure by removing `rclone-template.conf`.
+
+7. Adopted Best Practices for Maintainability:
+   - Improved the overall organization and clarity of the project for
+     maintainability and scalability.
+   - Refactored directory and file organization:
+     - Scripts handling specific services (e.g., mailserver) are now under
+       `scripts/`.
+     - Runtime cron job symlinks are isolated in the `runtime/` directory.
+   - Ensured environment variables are used exclusively for sensitive data
+     injection at runtime.
+   - Removed any sensitive information from the Docker image to make it safe
+     for publishing.
+
+**Key Highlights**:
+- **Improved Security**:
+  - Sensitive Google Drive and SMTP credentials are injected only at runtime,
+    ensuring the Docker image is clean and secure for public distribution.
+- **Modernized Architecture**:
+  - Transitioned to a Node.js-based solution for Google Drive interactions,
+    leveraging the latest API features.
+- **Enhanced Clarity and Maintainability**:
+  - Organized the project into clear, logical sections (`scripts/` for service
+    logic, `runtime/` for cron configurations).
+  - Simplified the Dockerfile and removed unnecessary tools.
+- **Production-Ready**:
+  - Fully compatible with Docker Swarm, scalable, and secure for deployment.
+
+**Next Steps**:
+1. **Testing**:
+   - Thoroughly test the backup and upload processes across environments to
+     ensure reliability.
+2. **Documentation**:
+   - Provide detailed user documentation for setting up and running the
+     service, especially focusing on `.env` configuration and Swarm
+     deployment.
+3. **Publishing**:
+   - Publish the Docker image and repository to make it available for public
+     use.
+
